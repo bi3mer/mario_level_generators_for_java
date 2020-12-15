@@ -2,8 +2,6 @@ from mario_vglc_grammars.Generation.Unconstrained import generate
 from mario_vglc_grammars.IO import *
 from .Generator import Generator
 
-from typing import overload
-
 class GrammarGenerator(Generator):
     def __init__(self, grammar, level):
         self.grammar = grammar

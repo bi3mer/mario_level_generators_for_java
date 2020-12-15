@@ -9,20 +9,14 @@ def build_qd(args):
     raise NotImplementedError('QD not implemented')
 
 
-
 def build_generator(cmd):
     args = cmd.split('_')[3:]
     generator = None
 
     if 'backoffngram' in cmd:
-        n = int(args[0])
-        generator = BackoffNGram(n, args[1])
+        generator = BackoffNGram(int(args[0]), args[1])
     elif 'ngram' in cmd:
-        raise NotImplementedError()
-        # n = int(args[0])
-
-        # gram = NGram(int(args[0]))
-        # generator = build_grammar(gram, args[1])
+        generator = NGram(int(args[0]), args[1])
     elif 'qd' in cmd:
         raise NotImplementedError()
         # generator = build_qd(args[0], int(args[1]))
