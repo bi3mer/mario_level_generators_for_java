@@ -1,0 +1,14 @@
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+------------------------------
+-------XX-----XX-----XXXX-----
+-------XX-----XX-----XXXX-----
+-----XXXX---XXXX---XXXXXX-----
+-----XXXX---XXXX---XXXXXX-----
+-----XXXX---XXXX---XXXXXX-----
+----XXXXX--XXXXX--XXXXXXX-----
+----XXXXX--XXXXX--XXXXXXX-----
+E---XXXXX--XXXXX--XXXXXXX--E--
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

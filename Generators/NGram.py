@@ -1,4 +1,3 @@
-from typing import overload
 from .GrammarGenerator import GrammarGenerator
 from mario_vglc_grammars.Grammar import NGram as NG
 

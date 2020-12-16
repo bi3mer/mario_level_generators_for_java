@@ -17,9 +17,8 @@ def build_generator(cmd):
         generator = BackoffNGram(int(args[0]), args[1])
     elif 'ngram' in cmd:
         generator = NGram(int(args[0]), args[1])
-    elif 'qd' in cmd:
-        raise NotImplementedError()
-        # generator = build_qd(args[0], int(args[1]))
+    elif 'randommapelites' in cmd:
+        generator = RandomMapElites(int(args[0]), args[1])
     else:
         raise Exception(f'Unknown generator requested in command: {cmd}')
 
