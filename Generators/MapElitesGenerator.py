@@ -16,11 +16,13 @@ class MapElitesGenerator(Generator):
         f.close()
 
         for i, row in enumerate(lines):
-            f = open(os.path.join('data', 'levels', f'{i}.txt'))
-            segment = f.readlines()
-            f.close()
+            path = os.path.join('data', 'levels', f'{i}.txt')
+            if os.path.exists(path):
+                f = open(path)
+                segment = f.readlines()
+                f.close()
 
-            self.bins[(row[0], row[1])] = rows_into_columns(segment)
+                self.bins[(row[0], row[1])] = rows_into_columns(segment)
 
         # initialize grammar
         self.grammar = NGram(n)
