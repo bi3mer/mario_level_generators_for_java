@@ -22,7 +22,8 @@ class MapElitesGenerator(Generator):
                 segment = f.readlines()
                 f.close()
 
-                self.bins[(row[0], row[1])] = rows_into_columns(segment)
+                row = row.split(',')
+                self.bins[(int(row[0]), int(row[1]))] = rows_into_columns(segment)
 
         # initialize grammar
         self.grammar = NGram(n)
