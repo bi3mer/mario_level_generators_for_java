@@ -2,14 +2,24 @@ from mario_vglc_grammars.Utility import columns_into_level_string
 from Utility.IO import get_directories, set_up_directories
 
 from os import remove, listdir
+from subprocess import Popen
+from atexit import register
 from pathlib import Path
 from os.path import join
 from sys import exit
 
 class CommandProcedure:
-    def __init__(self):
-        set_up_directories()
-        self.input_dir, self.output_dir = get_directories()
+    def __init__(self, agent):
+        self.agent = agent
+        set_up_directories(agent)
+        self.input_dir, self.output_dir = get_directories(agent)
+
+        self.proc = Popen(['java', '-jar', 'mario_simulator.jar', agent])
+        register(self.__del__)
+
+    def __del__(self):
+        self.proc.kill()
+        self.proc.terminate()
 
     def create_argument_file(self, name):
         Path(join(self.output_dir, name)).touch()

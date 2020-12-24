@@ -10,8 +10,8 @@ from .CommandProcedure import CommandProcedure
 import json
 
 class TestMapElites(CommandProcedure):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, agent):
+        super().__init__(agent)
 
          # initialize map elites
         self.bins = {}
@@ -62,49 +62,45 @@ class TestMapElites(CommandProcedure):
 
         self.send_level(columns_into_level_string(level))
         entry_is_valid[str_entry_one]['neighbors'][str_entry_two] = self.get_level_sent_result()
+
+    def __in_bounds(self, coordinate):
+        RESOLUTION = 50
+
+        return coordinate[0] >= 0 and coordinate[0] <= RESOLUTION and \
+               coordinate[1] >= 0 and coordinate[1] <= RESOLUTION
     
     def run(self):
         # this shouldn't be hard-coded but oh well. 
-        RESOLUTION = 50
+        DIRECTIONS = ((0,1), (0,-1), (1, 0), (-1, 0))
+
         entry_is_valid = {}
         keys = set(self.bins.keys())
 
         i = 0
+        total = len(keys) * 4
         for entry in keys:
-            update_progress(i/len(keys))
-            i += 1
+
+            if i > 400:
+                break
 
             self.test_entry(entry, entry_is_valid)
 
-            # note that this isn't the complete list of neighbors but as long 
-            # as we test to the right and up every bin will be tested. The
-            # implementation I'm going with is pretty lazy with code duplication
-            # but we only duplicate once so it isn't the end of the world.
-            #
-            # look for coordinate to the right
-            neighbor = (entry[0] + 1, entry[1])
-            while neighbor not in self.bins:
-                neighbor = (neighbor[0] + 1, neighbor[1])
-                if neighbor[0] > RESOLUTION:
-                    break
+            for dir in DIRECTIONS:
+                neighbor = (entry[0] + dir[0], entry[1] + dir[1])
+                while neighbor not in self.bins:
+                    neighbor = (neighbor[0] + dir[0], neighbor[1] + dir[1])
+                    if not self.__in_bounds(neighbor):
+                        break
 
-            if neighbor[0] <= RESOLUTION and neighbor in self.bins:
-                    
-                self.test_entry(neighbor, entry_is_valid)
-                self.test_two_entries(entry, neighbor, entry_is_valid)
+                if self.__in_bounds(neighbor) and neighbor in self.bins:
+                    self.test_entry(neighbor, entry_is_valid)
+                    self.test_two_entries(entry, neighbor, entry_is_valid)
 
-            # look for coordinate above.
-            neighbor = (entry[0], entry[1] + 1)
-            while neighbor not in self.bins:
-                neighbor = (neighbor[0], neighbor[1] + 1)
-                if neighbor[1] > RESOLUTION:
-                    break
+                i += 1
+                update_progress(i/total)
+                
 
-            if neighbor[1] <= RESOLUTION and neighbor in self.bins:
-                self.test_entry(neighbor, entry_is_valid)
-                self.test_two_entries(entry, neighbor, entry_is_valid)
-
-        f = open('results.json', 'w')
+        f = open(f'{self.agent}_results.json', 'w')
         f.write(json.dumps(entry_is_valid, indent=2))
         f.close()
 

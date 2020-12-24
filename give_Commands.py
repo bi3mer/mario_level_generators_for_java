@@ -61,7 +61,7 @@ def main():
         parser.print_help()
         sys.exit()
     elif args.mapelites == True:
-        runner = TestMapElites()
+        runner = TestMapElites(agent)
         runner.run()
 
 if __name__ == '__main__':
