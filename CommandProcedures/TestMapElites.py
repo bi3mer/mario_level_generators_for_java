@@ -79,10 +79,6 @@ class TestMapElites(CommandProcedure):
         i = 0
         total = len(keys) * 4
         for entry in keys:
-
-            if i > 400:
-                break
-
             self.test_entry(entry, entry_is_valid)
 
             for dir in DIRECTIONS:
