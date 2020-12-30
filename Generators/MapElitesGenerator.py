@@ -10,8 +10,7 @@ class MapElitesGenerator(Generator):
         # initialize map elites
         self.bins = {}
 
-        f = open(os.path.join('data', 'data.csv'))
-        f.readline()
+        f = open(os.path.join('data', 'validated.csv'))
         lines = f.readlines()
         f.close()
 
