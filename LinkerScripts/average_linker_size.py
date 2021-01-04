@@ -34,7 +34,6 @@ class AverageLinkerSize():
         for lvl in levels:
             self.grammar.add_sequence(lvl)
 
-
     def __in_bounds(self, coordinate):
         RESOLUTION = 50
         return coordinate[0] >= 0 and coordinate[0] <= RESOLUTION and \
@@ -63,7 +62,7 @@ class AverageLinkerSize():
                         self.bins[neighbor], 
                         0,
                         include_path_length=True)
-
+                        
                     self.linkers.append(link_size)
 
                 i += 1
