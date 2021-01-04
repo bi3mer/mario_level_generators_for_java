@@ -95,7 +95,6 @@ class TestMapElites(CommandProcedure):
                 i += 1
                 update_progress(i/total)
                 
-
         f = open(f'{self.agent}_results.json', 'w')
         f.write(json.dumps(entry_is_valid, indent=2))
         f.close()
