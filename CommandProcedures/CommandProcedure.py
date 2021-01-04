@@ -42,21 +42,18 @@ class CommandProcedure:
         remove(join(self.output_dir, 'lock'))
 
     def get_level_sent_result(self):
-        result = None
+        percent_complete = -1
 
-        while result == None:
+        while percent_complete == -1:
             files = listdir(self.input_dir)
 
             if len(files) == 1:
-                if 'true' in files[0]:
-                    result = True
-                elif 'false' in files[0]:
-                    result = False
+                if '_done' in files[0]:
+                    percent_complete = float(files[0].split('_')[0])
                 else:
                     print(f'Unknown result type: {files[0]}')
                     exit(-1)
 
                 remove(join(self.input_dir, files[0]))
 
-
-        return result
+        return percent_complete
