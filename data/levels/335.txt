@@ -7,8 +7,8 @@
 -------------------XSSS-------
 ------------------XXX---------
 -E-EE------------XXXS---------
------XX-X--------XXXX---------
------XX-XX-----XXXXXX-SSS--E--
------XX-XXX---XXXXXXX---------
------X--XXXX-----XXXX---------
------X--XXXXXXXXXXXXXXX---X-XX
+-----XX--X-------XXXX---------
+-----XX--X-----XXXXXX-SSS--E--
+-----XX--X----XXXXXXX---------
+-----X---X-------XXXX---------
+-----X---X--XXXXXXXXXXX---X-XX
