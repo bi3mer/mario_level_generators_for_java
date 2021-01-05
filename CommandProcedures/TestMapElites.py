@@ -60,8 +60,11 @@ class TestMapElites(CommandProcedure):
             self.bins[entry_two], 
             0)
 
-        self.send_level(columns_into_level_string(level))
-        entry_is_valid[str_entry_one]['neighbors'][str_entry_two] = self.get_level_sent_result()
+        if level == None:
+            entry_is_valid[str_entry_one]['neighbors'][str_entry_two] = -1
+        else:
+            self.send_level(columns_into_level_string(level))
+            entry_is_valid[str_entry_one]['neighbors'][str_entry_two] = self.get_level_sent_result()
 
     def __in_bounds(self, coordinate):
         RESOLUTION = 50

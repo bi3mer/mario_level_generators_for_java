@@ -1,17 +1,22 @@
 from mario_vglc_grammars.Utility import columns_into_level_string
 from mario_vglc_grammars.Generation.Constrained import generate_from_start_to_end
 from mario_vglc_grammars.IO.GetLevels import rows_into_columns
-from mario_vglc_grammars.Grammar.NGram import NGram
 from mario_vglc_grammars.IO import get_super_mario_bros
+from mario_vglc_grammars.Grammar.NGram import NGram
+
+import sys
 import os
 
 # f = open(os.path.join('data', 'levels', f'230.txt'))
-f = open(os.path.join('data', 'levels', f'124.txt'))
+# f = open(os.path.join('data', 'levels', f'124.txt'))
+f = open(os.path.join('data', 'levels', f'535.txt'))
 start = rows_into_columns(f.readlines())
 f.close()
 
 # f = open(os.path.join('data', 'levels', f'121.txt'))
-f = open(os.path.join('data', 'levels', f'121.txt'))
+# f = open(os.path.join('data', 'levels', f'121.txt'))
+# f = open(os.path.join('data', 'levels', f'588.txt'))
+f = open(os.path.join('data', 'levels', f'587.txt'))
 end = rows_into_columns(f.readlines())
 f.close()
 
@@ -26,6 +31,10 @@ lvl, path_length = generate_from_start_to_end(
     end, 
     0,
     include_path_length=True)
+
+if lvl == None:
+    print('no link found')
+    sys.exit(0)
 
 link = []
 end_of_start_index = len(start)
@@ -42,9 +51,9 @@ print(len(lvl))
 # print(len(link), path_length)
 # print(lvl)
 print(columns_into_level_string(lvl))
-print()
-print(columns_into_level_string(start + end))
-print()
-print(columns_into_level_string(start))
-print()
-print(columns_into_level_string(end))
+# print()
+# print(columns_into_level_string(start + end))
+# print()
+# print(columns_into_level_string(start))
+# print()
+# print(columns_into_level_string(end))
